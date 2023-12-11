@@ -1,36 +1,47 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
 
-    int N;
-    cin >> N;
+	int p_num = 0;
+	int num_cnt = 0;
+	int N;
+	
+	int num[100];
 
-    int num[100];
-    for (int i = 0; i < N; i++) {
-        cin >> num[i];
-    }
+	cin >> N;
 
-    int prime_count = 0;
-    for (int i = 0; i < N; i++) {
-        if (num[i] < 2) continue;  // 0과 1은 소수가 아님
+	for (int i = 0; i < N; i++)
+	{
+		cin >> num[i];
+	}
 
-        bool is_prime = true;
-        for (int j = 2; j * j <= num[i]; j++) {
-            if (num[i] % j == 0) {
-                is_prime = false;
-                break;
-            }
-        }
+	for (int i = 0; i < N; i++)
+	{
+		num_cnt = 0;
 
-        if (is_prime) {
-            prime_count++;
-        }
-    }
+		// 소수인지 확인
+		for (int k = 1; k <= num[i]; k++)
+		{
+			if (num[i] % k == 0)
+			{
+				if (num[i] != 1) { num_cnt++; }
+			}
+		}
 
-    cout << prime_count;
+		// 약수가 2개 이상이면 이 숫자는 패스
+		if (num_cnt > 2)
+		{
+			continue;
+		}
+		else if (num_cnt == 1 || num_cnt == 0)
+		{
+			continue;
+		}
+		else { p_num++; }
+	}
 
-    return 0;
+	cout << p_num;
 }

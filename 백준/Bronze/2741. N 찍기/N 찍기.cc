@@ -7,12 +7,9 @@ int main() {
 
 	int N;
 	cin >> N;
-	int a = 1;
 
-	while (1)
+	for (int i = 1; i <= N; i++)
 	{
-		if (a > N) { return 0; }
-		cout << a << "\n";
-		a++;
+		cout << i << "\n";
 	}
 }

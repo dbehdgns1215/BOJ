@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
@@ -8,12 +8,9 @@ int main() {
     int a, b, c, d, e, f;
     cin >> a >> b >> c >> d >> e >> f;
 
-    for (int x = -999; x <= 999; x++) {
-        for (int y = -999; y <= 999; y++) {
-            if (a*x + b*y == c && d*x + e*y == f) {
-                cout << x << " " << y;
-                return 0;
-            }
-        }
-    }
+    int determinant = a * e - b * d; // 행렬의 행렬식 (ad - bc)
+    int x = (c * e - b * f) / determinant; // x 값 계산
+    int y = (a * f - c * d) / determinant; // y 값 계산
+
+    cout << x << " " << y;
 }

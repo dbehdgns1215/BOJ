@@ -1,35 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int N;
-int cnt;
+int N, cnt;
 
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-	cin >> N;
+    cin >> N;
 
-	for (int i = 0; i < N; i++) {
-		string text;
-		cin >> text;
+    while (N--) {
+        string text;
+        cin >> text;
 
-		stack<char> s;
+        vector<char> s;
+        for (char c : text) {
+            if (!s.empty() && s.back() == c) {
+                s.pop_back();
+            } else {
+                s.push_back(c);
+            }
+        }
+        if (s.empty()) cnt++;
+    }
 
-		for (int k = 0; k < text.length(); k++) {
-			if (!s.empty()) {
-				if (s.top() == text[k]) {
-					s.pop();
-					continue;
-				}
-				else {
-					s.push(text[k]);
-				}
-			}
-			else { s.push(text[k]); }
-		}
-
-		if (s.empty()) { cnt++; }
-	}
-	cout << cnt;
+    cout << cnt;
 }

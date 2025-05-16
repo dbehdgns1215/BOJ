@@ -24,8 +24,7 @@ int main() {
     for (int i = 0; i < T; i++) {
         string s;
         cin >> s;
-        cout << isPalindrome(s) << " ";
-        cout << cnt << "\n";
+        cout << isPalindrome(s) << " " << cnt << "\n";
         cnt = 0;
     }
 }

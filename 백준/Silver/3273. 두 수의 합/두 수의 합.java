@@ -30,6 +30,7 @@ public class Main {
 			} else if (sum == x) {
 				cnt++;
 				left++;
+                right--;
 			} else {
 				right--;
 			}

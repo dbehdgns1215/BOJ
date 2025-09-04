@@ -30,42 +30,28 @@ public class Solution {
 				monthCnt[i] = Integer.parseInt(st.nextToken());
 			}
 			
-			calc(1);
+			calc();
 			
 			if (dp[12] > tickPrice[3]) {
 				dp[12] = tickPrice[3];
 			}
 			
-//			System.out.println(dp[1]);
-//			System.out.println(dp[2]);
-//			System.out.println(dp[3]);
-//			System.out.println(dp[4]);
-//			System.out.println(dp[5]);
-//			System.out.println(dp[6]);
-//			System.out.println(dp[7]);
-//			System.out.println(dp[8]);
-//			System.out.println(dp[9]);
-//			System.out.println(dp[10]);
-//			System.out.println(dp[11]);
-//			System.out.println(dp[12]);
 			sb.append("#").append(test_case).append(" ").append(dp[12]).append("\n");
 		}
 		System.out.print(sb);
 	}
-	private static void calc(int curMonth) {
-		if (curMonth == 13) {
-			return;
+	private static void calc() {
+		for (int curMonth = 1; curMonth < 13; curMonth++) {			
+			// 현재 달의 최적해 정의 -> 바로 이전달의 최적해 + 1일권 or 1달권
+			int optiamlPrice = dp[curMonth - 1] + Math.min(tickPrice[0] * monthCnt[curMonth], tickPrice[1]);
+			
+			// 3월 이상부터는 이전 3달과 3달권을 비교해서 최적해 갱신
+			if (curMonth >= 3) { 
+				optiamlPrice = Math.min(optiamlPrice, dp[curMonth - 3] + tickPrice[2]);
+			}
+			
+			// 현재 달에 방금 구한 최적해 갱신
+			dp[curMonth] = optiamlPrice;
 		}
-		
-		int optiamlPrice = dp[curMonth - 1] + Math.min(tickPrice[0] * monthCnt[curMonth], tickPrice[1]);
-		
-		if (curMonth >= 3) { 
-			optiamlPrice = Math.min(optiamlPrice, dp[curMonth - 3] + tickPrice[2]);
-		}
-		
-//		System.out.println(curMonth + "월 : " + optiamlPrice);
-		dp[curMonth] = optiamlPrice;
-		
-		calc(curMonth + 1);
 	}
 }

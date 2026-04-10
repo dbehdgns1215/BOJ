@@ -18,25 +18,28 @@ int main() {
         if (ch == '(' || ch == '[') {
             stk.push(ch);
             temp *= (ch == '(') ? 2 : 3;
-        } else if (ch == ')' || ch == ']') {
+        }
+        else if (ch == ')' || ch == ']') {
             if (stk.empty() || ((ch == ')' && stk.top() != '(') || (ch == ']' && stk.top() != '['))) {
                 cout << 0 << "\n";
                 return 0;
             }
-            if (i > 0 && (line[i - 1] == '(' || line[i - 1] == '[')) {
+            if (i > 0 && (line[i - 1] == '(' || line[i - 1] == '[')) { 
                 sum += temp;
             }
             temp /= (ch == ')') ? 2 : 3;
             stk.pop();
-        } else {
+        }
+        else {
             cout << 0 << "\n";
             return 0;
         }
     }
 
-    if (stk.empty()) {
+    if (stk.empty()) { 
         cout << sum << "\n";
-    } else {
+    }
+    else {
         cout << 0 << "\n";
     }
 
